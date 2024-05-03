@@ -1,0 +1,275 @@
+
+    .h2 {
+        font-size: 64px;
+        color: rgb(255, 255, 255);
+        line-height: 1;
+        font-weight: 700
+    }
+
+    .h6 {
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: #20fff5;
+        display: inline-block;
+        margin-bottom: 20px;
+        font-weight: 600;
+    }
+
+    .primary {
+        background: #207dff;
+        border: 1px solid #207dff !important;
+        padding: 15px;
+        border-radius: 30px;
+        color: #fff !important;
+    }
+
+    .p {
+        font-weight: 400;
+        color: rgba(0, 0, 0, .5);
+    }
+
+    .darknav {
+        background-color: #18676d !important;
+        color: white !important;
+    }
+
+    .bg-dark {
+        background-color: #000000a6 !important;
+    }
+
+    .login {
+        padding-right: 10px;
+    }
+
+    .navbody {
+        background-image: url(assets/new1.png);
+        background-size: 100%;
+        background-repeat: no-repeat;
+    }
+
+    .content {
+        background-color: #0000006b;
+        padding: 5%;
+        padding-bottom: 15%;
+        color: white;
+    }
+
+    .this {
+        float: right;
+        padding: 15%;
+
+    }
+
+    h3 {
+
+
+        line-height: 1.2;
+        font-size: 44px;
+        font-weight: 700;
+
+
+    }
+
+    img {
+        float: left;
+    }
+
+
+
+    .next {
+        background-image: url(assets/new2.jpg);
+        background-repeat: no-repeat;
+        padding-bottom: 20%;
+        margin-top: 5%;
+        margin-left: 15%;
+    }
+
+    .content1 {
+        background-color: #ffffff;
+        margin-left: 40%;
+        padding-top: 10%;
+        margin-right: 15%;
+        color: rgb(0, 0, 0);
+    }
+
+    .p {
+        font-weight: 400;
+        color: rgba(0, 0, 0, .5);
+    }
+
+    .z {
+        margin-bottom: 5% !important;
+    }
+
+    .ok {
+        margin: 5%;
+        color: black;
+    }
+
+    .featurette-heading {
+        color: black;
+        padding-top: 30%;
+        padding-bottom: 5%;
+        padding-left: 10%;
+
+    }
+
+    .nav-link:hover {
+        text-decoration: underline;
+    }
+
+    .move {
+        padding-left: 50%;
+    }
+
+    .navbar-brand {
+        padding-left: 2%
+    }
+
+    .col1 {
+        padding: 5%;
+
+    }
+
+    .col1:hover {
+        background-color: rgb(9, 161, 221);
+        color: white;
+    }
+
+    .banner {
+        background-image: url(assets/new3.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    .lead {
+        padding-left: 10%;
+    }
+
+    .a1 {
+        
+        background-color: rgb(0 0 0 / 31%);
+        padding: 15%;
+        margin-bottom: 5%;
+        color: #fff;
+        padding-right: 20%;
+
+        
+        
+    }
+    .alpha{
+        font-size: 60px;
+        margin-bottom: 2%;
+      
+    }
+    .beta{
+        font-size: 25px;
+        margin-bottom: 2%;
+        padding-right: 5%;
+    }
+    .gamma{
+        padding: 2%;
+        border-radius: 25px;
+        font-weight: 600;
+    }
+    .imaga{
+        background-image: url(assets/tr2.jpg);
+        background-size: cover;
+        
+        padding-bottom: 100%;
+    }
+    .imaga1{
+        background-image: url(assets/tr1.jpg);
+        background-size: cover;
+        
+        padding-bottom: 100%;
+    }
+    .imaga2{
+        background-image: url(assets/tr3.jpg);
+        background-size: cover;
+        
+        padding-bottom: 100%;
+    }
+    .doc {
+        padding: 10%;
+    }
+
+    .doc1 {
+        font-size: 60px;
+        margin-bottom: 2%;
+        font-weight: 700;
+    }
+
+    .doc2 {
+        font-size: 20px;
+        font-weight: 600;
+    }
+
+    .name {
+        margin-top: 5%;
+        margin-bottom: 2%;
+    }
+
+    .desig {
+        margin-bottom: -2%;
+        color: rgb(0, 60, 255);
+    }
+
+    .card-text {
+        text-align: center;
+    }
+
+    col.navbar:hover {
+        color: rgb(0, 60, 255);
+    }
+
+    .buton {
+        margin-left: 25%;
+    }
+
+    .appoint {
+        background-color: #0d6efdf7 !important;
+    }
+
+    .appoint:hover {
+        background-color: #028a1df7 !important;
+        border-color: #028a1df7;
+
+    }
+
+    .pic {
+        float: left;
+    }
+   
+
+    .form {
+    
+        margin-bottom: 10%;
+        float: right;
+        margin-right: 25%;
+       
+    }
+
+    .contactform {
+        margin-left: 20% !important;
+    }
+    footer {
+    background-color: #000;
+    color: #fff;
+    font-size: 14px;
+    padding: 0.5px;
+    margin-top: 50%;
+}
+.con1 {
+        font-size: 60px;
+        margin-bottom: 2%;
+        font-weight: 700;
+    }
+
+    .con2 {
+        font-size: 20px;
+        font-weight: 600;
+        
+    }
+

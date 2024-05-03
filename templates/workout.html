@@ -1,0 +1,361 @@
+{% extends "base.html" %}
+  <style>
+    
+    
+  </style>
+  {% block body %}
+    <style>
+      .data {
+        display: none;
+      }
+      .modify {
+        display: none;
+      }
+
+      .result-heading{
+        display: none;
+      }
+  
+      .navbody {
+        background-image: none !important;
+        background-size: 100%;
+        background-repeat: no-repeat;
+    }
+    .bg-dark{
+      background-color: rgb(36, 35, 35) !important;
+    }
+
+    .doc{
+      padding-top: 2% !important;
+    }
+    </style>
+    <br>
+    <form
+      class="container"
+      id="myForm"
+      onclick="event.preventDefault(); submitData()"
+      method="post"
+      enctype="multipart/form-data"
+    >
+      <div class="row g-3">
+        <div class="col">
+          <input
+            type="number"
+            class="form-control"
+            placeholder="age"
+            aria-label="age"
+            name="age"
+            id="age"
+          />
+        </div>
+        <div class="col">
+          <div class="col">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="goal -> weight loss, weight gain or anything else"
+              aria-label="goal"
+              name="goal"
+              id="goal"
+            />
+          </div>
+        </div>
+      </div>
+      <br />
+      <div class="row g-3">
+        <div class="col">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Desired weight"
+            aria-label="Desired weight"
+            name="desired_weight"
+            id="desired_weight"
+          />
+        </div>
+        <div class="col">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Present weight"
+            aria-label="Present weight"
+            name="present_weight"
+            id="present_weight"
+          />
+        </div>
+      </div>
+      <br />
+      <div class="row g-3">
+        <div class="col">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Height"
+            aria-label="Height"
+            name="height"
+            id="height"
+          />
+        </div>
+        <div class="col">
+          <div class="col">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="How active you are like sedentery/active or very active"
+              aria-label="lifestyle"
+              name="lifestyle"
+              id="lifestyle"
+            />
+          </div>
+        </div>
+      </div>
+      <br />
+      <div class="row g-3">
+        <div class="col">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Injuries(if any)"
+            aria-label="injuries"
+            name="injuries"
+            id="injuries"
+          />
+        </div>
+        <div class="col">
+          <div class="col">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="kind of workout -> at home/at gym/etc"
+              aria-label="style"
+              name="style"
+              id="style"
+            />
+          </div>
+        </div>
+      </div>
+      <br />
+      <div class="row g-3">
+        <div class="col">
+          <div class="col">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Time you can devote for workout in day"
+              aria-label="Time"
+              name="time"
+              id="time"
+            />
+          </div>
+        </div>
+        <div class="col">
+          <div class="col">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Gender"
+              aria-label="Gender"
+              name="sex"
+              id="sex"
+            />
+          </div>
+        </div>
+      </div>
+      <br />
+      <div class="d-grid gap-2">
+        <button type="submit" id="submitForm" class="btn plan btn-primary">
+          Submit
+        </button>
+      </div>
+    </form>
+
+    <div class="container changes" style="display:none; margin-top: 2rem">
+      <form class="container"
+      id="changesForm"
+      onclick="event.preventDefault(); getChanges()"
+      method="post"
+      enctype="multipart/form-data">
+        <div class="container text-center">
+          <div class="row align-items-start">
+            <div class="col">
+              <div class="mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="explain your problems here in detail"
+                  aria-label="modifications"
+                  name="modifications"
+                  id="modifications"
+                />
+              </div>
+            </div>
+            <div class="col">
+              <button type="submit" id="changes" class="btn btn-primary">
+                Get Changes
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <button class="btn reset btn-danger">Reset</button>
+    <!-- divider -->
+    <div
+      class="divider"
+      style="border: 1px solid rgb(43, 43, 43); margin-top: 2rem"
+    ></div>
+
+    <!-- outcomes -->
+    <div class="container result-heading">
+      <center><h1>Results will be displayed below!</h1></center>
+      <br />
+      <div class="container">
+        <div class="row align-items-start">
+          <div class="col col_A">
+            <center>
+              <div class="data">
+                Please Wait While We Make Your Custom Plan!
+              </div>
+            </center>
+            <div id="helloMessage"></div>
+          </div>
+          <div class="col col_B">
+            <center>
+              <div class="modify">Changes Will Be Reflected Below!</div>
+            </center>
+            <div class="updates" id="updates"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+   
+    <script>
+      async function submitData() {
+        const age = document.getElementById("age").value;
+        const goal = document.getElementById("goal").value;
+        const desired_weight = document.getElementById("desired_weight").value;
+        const present_weight = document.getElementById("present_weight").value;
+        const height = document.getElementById("height").value;
+        const lifestyle = document.getElementById("lifestyle").value;
+        const injuries = document.getElementById("injuries").value;
+        const style = document.getElementById("style").value;
+        const time = document.getElementById("time").value;
+        const sex = document.getElementById("sex").value;
+
+        const data = {
+          age: age,
+          goal: goal,
+          desired_weight: desired_weight,
+          present_weight: present_weight,
+          height: height,
+          lifestyle: lifestyle,
+          injuries: injuries,
+          style: style,
+          time: time,
+          sex: sex,
+        };
+
+        const allValuesPresent = Object.values(data).every((value) => !!value);
+        if (allValuesPresent) {
+          const response = await fetch("/submit", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json", 
+            },
+            body: JSON.stringify({ data }), 
+          });
+
+          const result = await response.json();
+            console.log(result);
+            const helloMessage = result['plan']; 
+            document.getElementById('helloMessage').innerText = helloMessage;
+        }
+        document.querySelector(".doc").style.paddingTop = "10%";
+      }
+
+      async function getChanges() {
+        let modifications = document.getElementById("modifications").value;
+        let prev = document.querySelector("#helloMessage").innerText;
+        let data = {
+          modifications: modifications,
+          prevPred : prev
+        };
+
+          let response = await fetch("/change", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ data }),
+          });
+
+          let result = await response.json();
+          console.log(result);
+          let updates = result['revisedPlan']; 
+          document.getElementById('updates').innerText = updates;
+
+          prev = updates;
+      }
+
+      plan = document.querySelector(".plan");
+      changes = document.querySelector(".changes");
+      planMake = document.querySelector(".data");
+      modify = document.querySelector(".modify");
+      cola = document.querySelector(".col_A");
+      colb = document.querySelector(".col_B");
+      resetBtn = document.querySelector(".reset")
+      changeBtn = document.querySelector("#changes")
+      result = document.querySelector(".result-heading")
+
+    
+      let access = () => {
+        changes.disabled = false;
+        plan.classList.add("btn-secondary");
+        plan.classList.remove("btn-primary");
+        changes.style.display = "block";
+        planMake.style.display = "block";
+        result.style.display = "block";
+      };
+
+      let improvement = () => {
+        modify.style.display = "block";
+      };
+
+      let improvement1 = () => {
+        cola.style.border = "2px solid black";
+        colb.style.border = "2px solid black";
+      }
+
+
+      let reset = ()=> {
+        document.getElementById("age").value = "";
+        document.getElementById("goal").value = "";
+        document.getElementById("desired_weight").value = "";
+        document.getElementById("present_weight").value = "";
+        document.getElementById("height").value = "";
+        document.getElementById("lifestyle").value = "";
+        document.getElementById("injuries").value = "";
+        document.getElementById("style").value = "";
+        document.getElementById("time").value = "";
+        document.getElementById("sex").value = "";
+        document.getElementById("helloMessage").innerText = "";
+        document.getElementById("updates").innerText = "";
+
+        modify.style.display = "none";
+        cola.style.border = "0px";
+        colb.style.border = "0px";
+
+        changes.disabled = true;
+        plan.classList.add("btn-primary");
+        plan.classList.remove("btn-secondary");
+        changes.style.display = "none";
+        planMake.style.display = "none";
+
+      }
+
+      plan.addEventListener("click", access);
+      changes.addEventListener("click", improvement);
+      resetBtn.addEventListener("click",reset) 
+      changeBtn.addEventListener("click",improvement1);
+    </script>
+    {% endblock body %}
