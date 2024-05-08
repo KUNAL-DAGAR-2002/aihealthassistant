@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template, jsonify
 from boltiotai import openai
+import pandas as pd
 
 app = Flask(__name__)
 
@@ -48,6 +49,13 @@ def index():
 def signup():
     if request.method == "POST":
         name = request.form.get("username")
+        email = request.form.get("email")
+        password = request.form.get("password")
+        data = {'name': [name], 'email': [email], 'password': [password]}
+        df = pd.DataFrame(data)
+        stored_data = pd.read_csv('static/stored_data.csv')
+        stored_data = pd.concat([stored_data, df], ignore_index=True)
+        stored_data.to_csv('static/stored_data.csv', index=False)
         print(name[:9])
         name = name[:9]
         return render_template('index.html',name=name)
