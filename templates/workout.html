@@ -5,6 +5,9 @@
   </style>
   {% block body %}
     <style>
+      .cover{
+        background-color: #ddd9d9;
+      }
       .data {
         display: none;
       }
@@ -28,10 +31,55 @@
     .doc{
       padding-top: 2% !important;
     }
+
+    .main-content{
+      text-align: center;
+      justify-content: center;
+  }
+  .main{
+      font-weight:500;
+      font-family: "Freeman", sans-serif;
+      font-style: normal;
+      font-size: 60px !important;
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+  }
+
+  .formBorder{
+    border: 2px solid black;
+    border-radius: 20px;
+    background-color: #ffffff;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  .main-result{
+    border: 2px solid black;
+    border-radius: 20px;
+    background-color: #ffffff;
+  }
+  .footer-main{
+    background-color: black;
+    color: #ffffff;
+    font-family: "Freeman", sans-serif;
+    font-size: 40px;
+    margin-top: 2rem;
+}
     </style>
-    <br>
+    
+    <div id="carouselExampleFade" class="carousel slide carousel-fade">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="static/gym.jpg" class="d-block w-100" alt="..." height="500px">
+        </div>
+      </div>
+    </div>
+    <div class="cover">
+    <div class="main-content">
+      <h1 class="main"><b>Get Your Workout Diet Plan Now</b></h1>
+    </div>
     <form
-      class="container"
+      class="container formBorder"
       id="myForm"
       onclick="event.preventDefault(); submitData()"
       method="post"
@@ -169,7 +217,7 @@
       </div>
     </form>
 
-    <div class="container changes" style="display:none; margin-top: 2rem">
+    <div class="container changes formBorder" style="display:none; margin-top: 2rem">
       <form class="container"
       id="changesForm"
       onclick="event.preventDefault(); getChanges()"
@@ -198,15 +246,12 @@
         </div>
       </form>
     </div>
-    <button class="btn reset btn-danger">Reset</button>
-    <!-- divider -->
-    <div
-      class="divider"
-      style="border: 1px solid rgb(43, 43, 43); margin-top: 2rem"
-    ></div>
-
+    <!-- <button class="btn reset btn-danger">Reset</button> -->
+  
     <!-- outcomes -->
-    <div class="container result-heading">
+
+    <br>
+    <div class="container result-heading main-result">
       <center><h1>Results will be displayed below!</h1></center>
       <br />
       <div class="container">
@@ -228,7 +273,15 @@
         </div>
       </div>
     </div>
-   
+    <div class="footer">
+      <center>
+          <div class="footer-main">
+              <span>Thanks For Using Our Service!</span>
+              <span><button class="btn reset btn-danger">Reset</button></span>
+          </div>
+      </center>
+    </div>
+   </div>
     <script>
       async function submitData() {
         const age = document.getElementById("age").value;
@@ -322,8 +375,8 @@
       };
 
       let improvement1 = () => {
-        cola.style.border = "2px solid black";
-        colb.style.border = "2px solid black";
+        cola.style.border = "";
+        colb.style.border = "";
       }
 
 
@@ -341,6 +394,8 @@
         document.getElementById("helloMessage").innerText = "";
         document.getElementById("updates").innerText = "";
 
+        
+
         modify.style.display = "none";
         cola.style.border = "0px";
         colb.style.border = "0px";
@@ -350,6 +405,7 @@
         plan.classList.remove("btn-secondary");
         changes.style.display = "none";
         planMake.style.display = "none";
+        result.style.display = "none";
 
       }
 

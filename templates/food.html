@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Diet</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Freeman&display=swap" rel="stylesheet">
+  </head>
+  <style>
+    .main-content{
+        text-align: center;
+        justify-content: center;
+    }
+    .main{
+        font-weight:500;
+        font-family: "Freeman", sans-serif;
+        font-style: normal;
+        font-size: 60px !important;
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
+    .formCont{
+        border: 2px solid black;
+        border-radius: 10px;
+        width: 50%;
+        height: 100%;
+    }
+    .cover{
+        background-color: #ddd9d9;
+    }
+    .imp{
+        text-align: left !important;
+        justify-content: left !important;
+    }
+    .output{
+        width: 100%;
+        background-color: #ffffff;
+        border: 2px solid black;
+        border-radius: 10px;
+        margin-top: 2rem;
+        display: none;
+    }
+    .heading{
+        text-align: center;
+        justify-content: center;
+        font-size: 30px;
+    }
+    .footer-main{
+        background-color: black;
+        color: #ffffff;
+        font-family: "Freeman", sans-serif;
+        font-size: 40px;
+        margin-top: 2rem;
+    }
+  </style>
+  <body>
+    <nav class="navbar bg-body-tertiary" data-bs-theme="dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">
+            FoodAI
+          </a>
+        </div>
+      </nav>
+      <div id="carouselExampleFade" class="carousel slide carousel-fade">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="static/photo.jpg" class="d-block w-100" alt="..." height="500px">
+          </div>
+        </div>
+      </div>
+      <div class="cover">
+      <div class="main-content">
+        <h1 class="main"><b>Get Your Cutom Diet Plan Now</b></h1>
+      </div>
+      <div class="container text-center formCont" style="background-color: #ffffff;">
+        <div class="row align-items-start">
+         
+          <div class="col">
+            <form onclick="event.preventDefault(); foodSubmit();" enctype="multipart/form-data" method="post">
+                <div class="main" style="padding-top: 0.5rem; padding: bottom 0.2em;font-size:40px !important" id="getData">Enter The Details Below</div>
+                <div class="mb-3 imp">
+                    <label for="diet" class="form-label"><b>Enter Prompt Here</b></label>
+                    <input type="text" class="form-control" id="diet" aria-describedby="diet"  placeholder="Sample : Generate a sample diet plan for me" required>
+                  </div>
+                  <div class="mb-3 imp">
+                    <label for="allergies" class="form-label"><b>Allergies(If Any)</b></label>
+                    <input type="text" class="form-control" id="allergies" name="allergies" placeholder="allergies if any" required>
+                  </div>
+                  <div class="d-grid gap-2" style="padding-bottom: 2rem;">
+                    <button class="btn btn-primary" id="btn" type="submit">
+                        Get Plan
+                    </button>
+                  </div>
+            </form>
+          </div>
+          
+        </div>
+      </div>
+      <div class="container output" id="opt-main">
+        <div class="heading">
+            <b>Here is your diet plan</b>
+        </div>
+        <div id="output">
+
+        </div>
+      </div>
+      <div class="footer">
+        <center>
+            <div class="footer-main">
+                <span>Thanks For Using Our Service!</span>
+                <span><button class="btn btn-danger" id="reset">Reset</button></span>
+            </div>
+        </center>
+      </div>
+      </div>
+      
+    <script>
+      async function foodSubmit(){
+        const diet = document.getElementById("diet").value;
+        const allergy = document.getElementById("allergies").value;
+        console.log(diet);
+        console.log(allergy);
+        const data = {
+          diet : diet,
+          allergy : allergy
+        };
+
+        const response = await fetch("/getFood", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json", 
+          },
+          body: JSON.stringify({ data }), 
+        });
+
+        let opt = document.getElementById("opt-main");
+        opt.style.display = "block";
+        let food = await response.json();
+        console.log(food);
+        let dietPlan = food['food']; 
+        document.getElementById('output').innerText = dietPlan;
+      }
+
+      let reset_btn = document.getElementById("reset");
+      let reset = ()=>{
+        document.getElementById("diet").value = "";
+        document.getElementById("allergies").value = "";
+        document.getElementById("opt-main").style.display = "none";
+        
+      }
+
+      reset_btn.addEventListener('click',reset);
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  </body>
+</html>

@@ -10,6 +10,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="static/index_style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Freeman&display=swap" rel="stylesheet">
     <title>{% block title %}{% endblock title %}</title>
 </head>
 
@@ -32,23 +35,27 @@
                             <a class="nav-link active" aria-current="page" href="/">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="#About">About</a>
+                            <a class="nav-link active" href="/#About">About</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="#Department">Workouts</a>
+                            <a class="nav-link active" href="/#Department">Workouts</a>
                         </li>
 
 
                         <li class="nav-item">
-                            <a class="nav-link active" href="#Trainer">Trainer</a>
+                            <a class="nav-link active" href="/#Trainer">Trainer</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link active" href="#Contact">Contact</a>
+                            <a class="nav-link active" href="/#Contact">Contact</a>
                         </li>
                         <li>
-                            <a href="/work" class="btn btn-danger">Get Workout Plan</a>
+                            <a href="/work" class="nav-link active">Workout Plan</a>
                         </li>
+                        <li>
+                            <a href="/food" class="nav-link active">Diet</a>
+                        </li>
+                        
                 
                     </ul>
                     
@@ -59,58 +66,6 @@
 
         {% block body %} {% endblock body %}
     
-    <div class="contact" id="Contact">
-        <div class="doc">
-            <center>
-                <h2 class="con1">Contact Us</h2>
-            </center>
-            <center>
-                <p class="con2">Just drop a message to us our team will contact you within 5 minutes! Or you can reach out to us directly on <br><a href="#">+91 90000 00000 </a>| <a href="#">+91 80000 00000 </a></p>
-            </center>
-        </div>
-    
-        <div class="contactform">
-            <div class="pic">
-
-                <iframe class="major" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d497698.7749179518!2d77.30126246150184!3d12.954459536902307!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae1670c9b44e6d%3A0xf8dfc3e8517e4fe0!2sBengaluru%2C%20Karnataka!5e0!3m2!1sen!2sin!4v1714222101208!5m2!1sen!2sin" width="400" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
-            <div class="form">
-                <center>
-                    
-                    <p style="font-size: 30px;"></p>
-                </center>
-                <form>
-
-                    <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Email address</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleInputPassword1" class="form-label">Mobile</label>
-                        <input type="number" class="form-control" id="exampleInputPassword1">
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleInputMessage1" class="form-label">Message to us</label>
-                        <input type="text" class="form-control" id="exampleInputMessage1">
-                    </div>
-
-                    <center><button type="submit" class="btn btn-primary form-control">Submit</button></center>
-                </form>
-            </div>
-        </div>
-    
-    <footer>
-        <div class="container">
-           <p> <center>Copyright © UltraFit. All Rights Reserved | Contact Us: +91 90000 00000</center></p>
-        </div>
-
-    </footer>
-
-   
-
-
-
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"

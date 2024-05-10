@@ -41,24 +41,26 @@ def modify(prediction, modifications):
     content = response['choices'][0]['message']['content']
     return content
 
+def foodPlan(diet, allergies):
+    response = openai.chat.completions.create(
+        model="gpt-3.5-turbo",
+        messages=[{
+            "role": "system",
+            "content": "You are a helpful assistant and AI diet assistant having all knowledge related to health and nutrition."
+        }, {
+            "role": "user",
+            "content": f"{diet}, I am allergic to {allergies}"
+        }]
+    )
+
+    content = response['choices'][0]['message']['content']
+    return content
+
 @app.route('/')
 def index():
-    return render_template('signup.html')
+    return render_template('index.html')
 
-@app.route('/signup',methods=['GET','POST'])
-def signup():
-    if request.method == "POST":
-        name = request.form.get("username")
-        email = request.form.get("email")
-        password = request.form.get("password")
-        data = {'name': [name], 'email': [email], 'password': [password]}
-        df = pd.DataFrame(data)
-        stored_data = pd.read_csv('static/stored_data.csv')
-        stored_data = pd.concat([stored_data, df], ignore_index=True)
-        stored_data.to_csv('static/stored_data.csv', index=False)
-        print(name[:9])
-        name = name[:9]
-        return render_template('index.html',name=name)
+
 
 @app.route('/work')
 def work():
@@ -95,8 +97,25 @@ def change():
     print(revisedPlan)
     return jsonify({'success':True,'revisedPlan':revisedPlan})
 
-@app.route('/ind')
-def ind():
-    return render_template('index.html')
+
+@app.route('/food')
+def food():
+    return render_template('food.html')
+
+
+@app.route('/getFood',methods=['POST'])
+def getFood():
+    data = request.json
+    data = data['data']
+    actual_data =list(data.values())
+    print(actual_data)
+    diet = actual_data[0]
+    allergies = actual_data[1]
+    plan = foodPlan(diet, allergies)
+    print(plan)
+    return jsonify({'success':True,'food':plan})
+
+
+
 if __name__ == "__main__":
     app.run(port=8000,debug=True)
